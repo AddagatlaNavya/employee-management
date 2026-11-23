@@ -1,0 +1,88 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+### Create Employee
+POST http://localhost:8080/api/v1/employees
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlbXBsb3llZS1tYW5hZ2VtZW50Iiwic3ViIjoiMiIsInJvbGUiOiJVU0VSIiwiZXhwIjoxNzk1MDA2OTc5LCJpYXQiOjE3OTUwMDMzNzksImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20ifQ.ER3ubNvXFgphxF9nWETXW0BWlwxHMFohTrzNK-6B5sA
+
+{
+  "name": "Rahul",
+  "email": "rahul@gmail.com",
+  "department": "IT"
+}
+### Create Second Employee
+POST http://localhost:8080/api/v1/employees
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlbXBsb3llZS1tYW5hZ2VtZW50Iiwic3ViIjoiMiIsInJvbGUiOiJVU0VSIiwiZXhwIjoxNzk1MDA2NzEzLCJpYXQiOjE3OTUwMDMxMTMsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20ifQ.5QoFy25NDrumSbzvEyT8gzElB6bfe7bBeoU5mP4-4t4
+{
+  "name": "Priya",
+  "email": "priya@gmail.com",
+  "department": "HR"
+}
+### Create Employee - Invalid Request
+POST http://localhost:8080/api/v1/employees
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlbXBsb3llZS1tYW5hZ2VtZW50Iiwic3ViIjoiMSIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc5NTAwNDY3MSwiaWF0IjoxNzk1MDAxMDcxLCJlbWFpbCI6ImFkZGFnYXRsYW5hdnlhQGdtYWlsLmNvbSJ9.mQnxvDTC3gKQafTnJG5hn08WWSJUM3ioFNwDxBtYXCM
+
+{
+  "name": "",
+  "email": "invalid-email",
+  "department": "IT"
+}
+
+### Get Non-Existing Employee
+GET http://localhost:8080/api/v1/employees/999
+
+### Create Employee - Duplicate Email
+POST http://localhost:8080/api/v1/employees
+Content-Type: application/json
+
+{
+  "name": "Rahul",
+  "email": "rahul@gmail.com",
+  "department": "IT"
+}
+
+### Update Employee
+PUT http://localhost:8080/api/v1/employees/1
+Content-Type: application/json
+Authorization: Basic dXNlcjo1OTFlOWY1MC0yYjNmLTQ1ZmEtOGQ0Zi1lNjViZWY1YzczNWM=
+
+{
+  "name": "Rahul Kumar",
+  "email": "rahul4@gmail.com",
+  "department": "Engineering"
+}
+
+### delete employee
+DELETE http://localhost:8080/api/v1/employees/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlbXBsb3llZS1tYW5hZ2VtZW50Iiwic3ViIjoiMSIsInJvbGUiOiJVU0VSIiwiZXhwIjoxNzk1MDAzNDYwLCJpYXQiOjE3OTQ5OTk4NjAsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20ifQ.A_W9kiRsB0CPvcQYg0a6hZ9TtXm6nTrJkuGb_L933kw
+
+### Verify Deleted Employee
+GET http://localhost:8080/api/v1/employees/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlbXBsb3llZS1tYW5hZ2VtZW50Iiwic3ViIjoiMSIsInJvbGUiOiJVU0VSIiwiZXhwIjoxNzk1MDAzNDYwLCJpYXQiOjE3OTQ5OTk4NjAsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20ifQ.A_W9kiRsB0CPvcQYg0a6hZ9TtXm6nTrJkuGb_L933kw
+
+### Get All Employees
+GET http://localhost:8080/api/v1/employees
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlbXBsb3llZS1tYW5hZ2VtZW50Iiwic3ViIjoiMSIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc5NTAwNTQ2MSwiaWF0IjoxNzk1MDAxODYxLCJlbWFpbCI6ImFkZGFnYXRsYW5hdnlhQGdtYWlsLmNvbSJ9.6deJObvAUg3u8CyZuKv7ddHtun_Pd3B3QsFHGtxzrzU
+### Get First Page
+GET http://localhost:8080/api/v1/employees?page=0&size=1
+### Sort Employees By Name Ascending
+GET http://localhost:8080/api/v1/employees?sort=name,asc
+### Invalid Page Number
+GET http://localhost:8080/api/v1/employees?page=-1&size=10
+### Invalid Page Size
+GET http://localhost:8080/api/v1/employees?page=0&size=101
+
+### Create employee as ADMIN
+POST http://localhost:8080/api/v1/employees
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlbXBsb3llZS1tYW5hZ2VtZW50Iiwic3ViIjoiMSIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc5NTAwNDY3MSwiaWF0IjoxNzk1MDAxMDcxLCJlbWFpbCI6ImFkZGFnYXRsYW5hdnlhQGdtYWlsLmNvbSJ9.mQnxvDTC3gKQafTnJG5hn08WWSJUM3ioFNwDxBtYXCM
+Content-Type: application/json
+
+{
+  "name": "Admin Test",
+  "email": "admin.test@example.com",
+  "department": "Engineering"
+}
